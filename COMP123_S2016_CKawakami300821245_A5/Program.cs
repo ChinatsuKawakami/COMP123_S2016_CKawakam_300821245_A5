@@ -11,7 +11,7 @@ using System.IO;
  * Date: 7th July 2016
  * Date Modified : 11th July 2016
  * Description: This program create text file and display it 
- * version 0.0.3 - create method to display textfile
+ * version 0.0.4 - updated DisplayMethod
  */
 namespace COMP123_S2016_CKawakami300821245_A5
 {
@@ -35,11 +35,14 @@ namespace COMP123_S2016_CKawakami300821245_A5
 
             FileStream outFile = new FileStream(FILENAME, FileMode.Create, FileAccess.Write);
             StreamWriter writer = new StreamWriter(outFile);
+
+
             Student student = new Student();
 
-            Console.WriteLine("Enter LASTNAME of student or end to quit");
 
-            student.LastName = Console.ReadLine();
+           Console.WriteLine("Enter LASTNAME of student or end to quit");
+
+          student.LastName = Console.ReadLine();
 
             while (student.LastName != "end")
             {
@@ -56,6 +59,7 @@ namespace COMP123_S2016_CKawakami300821245_A5
                 student.LastName = Console.ReadLine();
 
             }
+       
             writer.Close();
             outFile.Close();
 
@@ -71,7 +75,7 @@ namespace COMP123_S2016_CKawakami300821245_A5
                 Boolean cont = true;
                 if(File.Exists(FILENAME))
                 {
-                    Console.WriteLine("FILE exists");
+                    Console.WriteLine("FILE Does Exist!");
               
                 while (cont)
                 {
@@ -92,11 +96,19 @@ namespace COMP123_S2016_CKawakami300821245_A5
             }//try
             catch (Exception error)
             {
-                Console.WriteLine("File no exists!");
+                Console.WriteLine("No such File");
                 Console.WriteLine(error.Message);
             }
 
         }//end program 
+
+ /**
+  * The Method is to read grade.txt file 
+  * 
+  * @Method: DisplayMethod
+  * @return:{void}
+  * 
+  */
     
            public static void DisplayMethod()
             {
@@ -108,7 +120,7 @@ namespace COMP123_S2016_CKawakami300821245_A5
                Student student = new Student();
                 string readerString = reader.ReadLine();
                 string[] fields;
-                Console.WriteLine("\n{0,-5}{1,-12}{2,-15}{3,8}{4,10}\n","StudentLastName","StudentFirstName","#ID","Class","Grade");
+                Console.WriteLine("\n{0,-10}{1,-20}{2,-20}{3,-20}{4,-20}\n","LastName","FirstName","#ID","Class","Grade");
                             while (readerString != null)
                             {
                                 fields = readerString.Split(DELIM);
@@ -117,7 +129,7 @@ namespace COMP123_S2016_CKawakami300821245_A5
                                 student.StudentId = fields[2];
                                 student.ClassName = fields[3];
                                 student.Grade = fields[4];
-                                Console.WriteLine("{0,-5}{1,-12}{2,-15}{3,8}{4,10}",
+                                Console.WriteLine("{0,-10}{1,-20}{2,-20}{3,-20}{4,-20}",
                                     student.LastName,
                                     student.FirstName,
                                     student.StudentId,
@@ -125,7 +137,16 @@ namespace COMP123_S2016_CKawakami300821245_A5
                                     student.Grade);
                                 readerString = reader.ReadLine();
                             }
-           
+                            reader.Close();
+                            inFile.Close();
            }//end DisplayMethod()
         }//program
     }//class 
+/*
+ Student student1 = new Student("Carter","Owen","A123","Programming2","A+");
+            Student student2 = new Student("Fox", "John", "B234", "ComputerScience", "B+");
+            Student student3 = new Student("Lorenzo", "Davis", "C567", "JAVA", "C+");
+            writer.Write(student1);
+            writer.WriteLine(student2);
+            writer.WriteLine(student3);
+*/
