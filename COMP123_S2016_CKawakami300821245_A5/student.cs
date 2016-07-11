@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COMP123_S2016_CKawakami300821245_A5
 {
-    public class student
+    public class Student
     {
         public string LastName { get; set;}
         public string FirstName { get; set; }
