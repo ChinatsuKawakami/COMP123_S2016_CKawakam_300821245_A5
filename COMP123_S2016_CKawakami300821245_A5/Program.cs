@@ -9,21 +9,24 @@ using System.IO;
  * Author: Chinatsu Kawakami
  * StudentID:300821245
  * Date: 7th July 2016
- * Date Modified : 11th July 2016
+ * Date Modified : 18th July 2016
  * Description: This program create text file and display it 
- * version 0.0.4 - updated DisplayMethod
+ * version 0.0.5 - updated Main method to change the way to create text file which includes students data
  */
 namespace COMP123_S2016_CKawakami300821245_A5
 {
   /**
+   * <summary>
    * The Maim method for our driver class program
+   * </summary>
    * @class: program
    */
     class Program
     {
  /**
+  * <summary>
   * The Main method for our driver class program
-  * 
+  * </summary>
   * @constructor:Main
   * @param {string[]}args
   */
@@ -31,15 +34,26 @@ namespace COMP123_S2016_CKawakami300821245_A5
         {
 
             string FILENAME = "../../grade.txt";
-            const char DELIM = ',';
+           
 
             FileStream outFile = new FileStream(FILENAME, FileMode.Create, FileAccess.Write);
             StreamWriter writer = new StreamWriter(outFile);
 
+            string[] fName = { "Owen", "John", "Davis" };
+            string[] lName =  {"Carter","Fox","Lorenzo"};
+            string[] idNumber = { "AB123", "BC223", "MO345" };
+            string[] className = { "Programming2", "ComputerScience", "JAVA" };
+            string[] grade = { "A+", "B+", "C" };
+            for (int i = 0; i < 3; i++)
+            {
+                Student student = new Student(lName[i], fName[i], idNumber[i], className[i], grade[i]);
 
-            Student student = new Student();
-
-
+                writer.WriteLine(student);
+                
+                
+            }
+          
+            /*
            Console.WriteLine("Enter LASTNAME of student or end to quit");
 
           student.LastName = Console.ReadLine();
@@ -59,6 +73,7 @@ namespace COMP123_S2016_CKawakami300821245_A5
                 student.LastName = Console.ReadLine();
 
             }
+             * */
        
             writer.Close();
             outFile.Close();
@@ -103,8 +118,9 @@ namespace COMP123_S2016_CKawakami300821245_A5
         }//end program 
 
  /**
+  * <summary>
   * The Method is to read grade.txt file 
-  * 
+  * </summary>
   * @Method: DisplayMethod
   * @return:{void}
   * 
